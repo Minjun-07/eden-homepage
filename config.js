@@ -2,7 +2,7 @@
 // 구글 시트 "웹에 게시"로 받은 CSV 링크를 아래 따옴표 안에 넣으면 됩니다.
 window.EDEN_CONFIG = {
   // 시트의 "홈페이지용" 탭 CSV 링크
-  productsCsv: "",
+  productsCsv: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhFD8SZhzAVznsF5pvYLEUKXEvr6zDBNyWLGGNLNSWNobiad2Ps462nR1hs22BbpMcla_iQ6wfEJD6/pub?gid=4&single=true&output=csv",
   // 시트의 "사이트 문구" 탭 CSV 링크
   siteTextCsv: ""
 };
