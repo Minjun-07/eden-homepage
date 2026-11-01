@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>에덴명품 청담점 | 청담동 중고명품</title>
+<meta name="description" content="청담동 중고명품 에덴명품. 꼼꼼한 검수와 정직한 상태 등급으로 믿을 수 있는 중고명품을 판매·매입합니다.">
+<meta property="og:title" content="에덴명품 청담점">
+<meta property="og:description" content="청담동에서 만나는 믿을 수 있는 중고명품">
+<meta property="og:image" content="assets/logo.png">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;700&display=swap">
+<style>
+  :root { --ink:#111111; --muted:#5A5A5A; --body:#3A3A3A; --line:#E4E4E0; --ivory:#FBF8F2; --gold:#8A6A2E; --gold-light:#D9B877; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:'Noto Sans KR', system-ui, sans-serif; color:var(--ink); background:#fff; line-height:1.6; }
+  a { color:var(--ink); } a:hover { color:var(--gold); }
+  img { max-width:100%; }
+  .wrap { max-width:1200px; margin:0 auto; padding:0 24px; }
+  .serif { font-family:'Noto Serif KR', serif; }
+  .latin { font-family:'Cormorant Garamond', serif; }
+  .eyebrow { margin:0; font-size:13px; letter-spacing:.2em; color:var(--gold); font-weight:700; }
+  h2 { margin:0; font-family:'Noto Serif KR', serif; font-size:clamp(28px,3.4vw,36px); font-weight:700; }
+  section { padding:88px 0; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:0 28px; text-decoration:none; font-weight:700; font-size:16px; border:1px solid var(--ink); }
+  .btn-dark { background:var(--ink); color:#fff; } .btn-dark:hover { background:#333; color:#fff; }
+  .btn-line { background:transparent; color:var(--ink); font-weight:500; } .btn-line:hover { background:var(--ink); color:#fff; }
+
+  #notice { display:none; background:var(--ink); color:#fff; text-align:center; padding:10px 16px; font-size:14px; }
+  header { border-bottom:1px solid var(--line); background:#fff; position:sticky; top:0; z-index:10; }
+  header .wrap { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; padding-top:16px; padding-bottom:16px; }
+  .logo { text-decoration:none; display:flex; align-items:baseline; gap:10px; }
+  .logo b { font-family:'Cormorant Garamond', serif; font-size:30px; font-weight:600; letter-spacing:.28em; }
+  .logo span { font-size:13px; color:var(--muted); font-weight:500; }
+  nav { display:flex; flex-wrap:wrap; gap:4px 26px; font-size:15px; font-weight:500; }
+  nav a { text-decoration:none; padding:10px 0; }
+
+  .hero .wrap { display:flex; flex-wrap:wrap; align-items:center; gap:56px; }
+  .hero-text { flex:999 1 520px; min-width:0; display:flex; flex-direction:column; gap:24px; }
+  .hero-text .latin { margin:0; font-size:18px; letter-spacing:.32em; color:var(--gold); font-weight:600; }
+  .hero h1 { margin:0; font-family:'Noto Serif KR', serif; font-weight:700; font-size:clamp(32px,5vw,60px); line-height:1.28; white-space:pre-line; }
+  .hero p.desc { margin:0; font-size:18px; color:var(--body); max-width:560px; }
+  .hero .btns { display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; }
+  .hero img { flex:1 1 280px; width:100%; max-width:420px; aspect-ratio:1/1; object-fit:contain; margin:0 auto; }
+
+  .head-row { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:28px; }
+  .filters { display:flex; flex-direction:column; gap:14px; margin-bottom:36px; }
+  .pills { display:flex; flex-wrap:wrap; gap:8px; }
+  .pill { min-height:44px; padding:0 20px; border:1px solid #D0D0CA; background:#fff; color:var(--ink); font:inherit; font-size:15px; font-weight:500; cursor:pointer; }
+  .pill[aria-pressed="true"] { background:var(--ink); border-color:var(--ink); color:#fff; font-weight:700; }
+  .brands { display:flex; flex-wrap:wrap; align-items:center; gap:4px 18px; }
+  .brands .label { font-size:13px; font-weight:700; color:var(--muted); letter-spacing:.08em; }
+  .blink { min-height:44px; padding:0 2px; border:0; border-bottom:2px solid transparent; background:none; color:var(--muted); font:inherit; font-size:14px; font-weight:500; cursor:pointer; }
+  .blink[aria-pressed="true"] { color:var(--ink); border-bottom-color:var(--ink); font-weight:700; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:32px 24px; }
+  .card { text-decoration:none; color:var(--ink); display:flex; flex-direction:column; gap:14px; }
+  .card .ph { position:relative; aspect-ratio:1/1; background:#F3F3F1; overflow:hidden; }
+  .card .ph img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .3s; }
+  .card:hover .ph img { transform:scale(1.03); }
+  .card .badge { position:absolute; top:10px; left:10px; background:var(--ink); color:#fff; font-size:12px; font-weight:700; padding:4px 10px; }
+  .card .brand { margin:0; font-size:12px; letter-spacing:.14em; color:var(--muted); font-weight:700; }
+  .card h3 { margin:0; font-size:16px; font-weight:500; line-height:1.45; }
+  .card .meta { margin:0; font-size:14px; color:var(--muted); }
+  .card .price { margin:6px 0 0; font-size:18px; font-weight:700; }
+  .empty { border:1px solid var(--line); padding:56px 24px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .empty p { margin:0; }
+
+  .alt { background:var(--ivory); }
+  .grades { display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:16px; margin-top:36px; }
+  .grade { background:#fff; border:1px solid var(--line); padding:24px; display:flex; gap:20px; }
+  .grade b { flex:0 0 72px; font-family:'Noto Serif KR', serif; font-size:22px; }
+  .grade p { margin:0; font-size:15px; color:var(--body); }
+
+  .channels { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:24px; margin-top:36px; }
+  .channel { text-decoration:none; border:1px solid #D9D9D4; padding:32px; display:flex; flex-direction:column; gap:10px; min-height:180px; }
+  .channel b { font-size:20px; color:var(--ink); }
+  .channel span { font-size:15px; color:#4A4A4A; }
+  .channel em { margin-top:auto; font-style:normal; font-size:14px; font-weight:700; color:var(--gold); }
+  .channel.soon { border-style:dashed; } .channel.soon em { color:var(--muted); }
+
+  .buy { background:var(--ink); color:#fff; }
+  .buy .wrap { display:flex; flex-wrap:wrap; gap:48px; align-items:center; justify-content:space-between; }
+  .buy .eyebrow { color:var(--gold-light); }
+  .buy h2 { line-height:1.35; }
+  .buy p { color:#D6D6D2; }
+  .buy .btns { flex:1 1 320px; display:flex; flex-direction:column; gap:12px; }
+  .buy .btn-white { background:#fff; color:var(--ink); border-color:#fff; }
+  .buy .btn-outline { background:transparent; color:#fff; border-color:#fff; font-weight:500; }
+
+  .store .wrap { display:flex; flex-wrap:wrap; gap:48px; }
+  .store dl { flex:1 1 420px; margin:0; display:grid; grid-template-columns:96px 1fr; gap:18px 24px; align-content:start; font-size:16px; }
+  .store dt { font-weight:700; } .store dd { margin:0; color:var(--body); }
+
+  footer { border-top:1px solid var(--line); font-size:13px; color:var(--muted); }
+  footer .wrap { padding-top:40px; padding-bottom:56px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; }
+  @media (max-width:640px){ section { padding:64px 0; } .store dl { grid-template-columns:80px 1fr; } }
+</style>
+<script src="config.js"></script>
+</head>
+<body>
+<div id="notice" role="status"></div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top"><b>EDEN</b><span>에덴명품 청담점</span></a>
+    <nav aria-label="주요 메뉴">
+      <a href="#products">상품 보기</a>
+      <a href="#grade">상태 등급</a>
+      <a href="#buy">명품 매입</a>
+      <a href="#store">매장 안내</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-text">
+      <p class="latin">USED LUXURY · CHUNGDAM</p>
+      <h1 data-text="메인 제목">청담동에서 만나는
+믿을 수 있는 중고명품</h1>
+      <p class="desc" data-text="메인 설명">꼼꼼한 검수와 정직한 상태 등급으로, 처음 거래하는 분도 안심하고 고를 수 있게 준비합니다.</p>
+      <div class="btns">
+        <a class="btn btn-dark" data-link="번개장터 상점" href="https://m.bunjang.co.kr/shops/79680863/products">번개장터 상점 보기</a>
+        <a class="btn btn-line" data-link="카카오톡 채널" href="http://pf.kakao.com/_GWDWX">카카오톡 상담</a>
+      </div>
+    </div>
+    <img src="assets/logo.png" alt="에덴명품 청담점 로고">
+  </div>
+</section>
+
+<section id="products">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <p class="eyebrow">NEW ARRIVALS</p>
+        <h2>판매 중인 상품</h2>
+      </div>
+      <a data-link="번개장터 상점" href="https://m.bunjang.co.kr/shops/79680863/products" style="font-weight:500">전체 상품 보기 →</a>
+    </div>
+    <div class="filters">
+      <div class="pills" id="cats" role="group" aria-label="품목 카테고리"></div>
+      <div class="brands" id="brands" role="group" aria-label="브랜드"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" hidden>
+      <p style="font-size:17px;font-weight:500">이 조건의 상품을 준비 중입니다</p>
+      <p style="color:var(--muted)">찾으시는 상품이 있으면 카카오톡으로 알려주세요. 입고되면 먼저 연락드립니다.</p>
+      <a class="btn btn-dark" data-link="카카오톡 채널" href="http://pf.kakao.com/_GWDWX" style="margin-top:8px;min-height:48px;font-size:15px;font-weight:500">카카오톡으로 상품 요청</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="grade">
+  <div class="wrap">
+    <p class="eyebrow">CONDITION GRADE</p>
+    <h2>상태 등급 기준</h2>
+    <p style="margin:8px 0 0;color:#4A4A4A;max-width:680px">모든 상품은 같은 기준으로 등급을 매기고, 하자는 사진과 설명으로 숨김없이 안내합니다.</p>
+    <div class="grades">
+      <div class="grade"><b>N-S</b><p>새상품 또는 새상품과 같은 상태. 개봉 상품으로 부속품이 일부 없을 수 있음</p></div>
+      <div class="grade"><b>S</b><p>사용 횟수가 적어 새상품에 가까운 상태. 중고 등급 중 최상</p></div>
+      <div class="grade"><b>A</b><p>자연스러운 사용감은 있으나 전체적으로 양호한 상태</p></div>
+      <div class="grade"><b>B</b><p>스크래치, 때 등 사용 흔적이 있어 중고 느낌이 있는 상태</p></div>
+      <div class="grade"><b>C</b><p>스크래치, 구김, 변색 등 사용 흔적이 많아 중고 느낌이 확연한 상태</p></div>
+      <div class="grade"><b>USED</b><p>등급을 판단하기 어려운 상품. 상세 사진으로 상태를 꼭 확인해 주세요</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">WHERE TO BUY</p>
+    <h2>어디서든 만나보세요</h2>
+    <div class="channels">
+      <a class="channel" data-link="번개장터 상점" href="https://m.bunjang.co.kr/shops/79680863/products"><b>번개장터</b><span>전 상품 등록, 안전결제로 전국 택배 거래</span><em>상점 바로가기 →</em></a>
+      <a class="channel" data-link="유튜브" href="https://www.youtube.com/@%EC%97%90%EB%8D%B4%EC%A4%91%EA%B3%A0%EB%AA%85%ED%92%88"><b>유튜브 라이브</b><span>실물을 화면으로 자세히 보고 실시간으로 질문하세요</span><em>채널 바로가기 →</em></a>
+      <a class="channel soon" id="insta"><b>인스타그램</b><span>신상품 입고와 매장 소식을 전할 공식 계정을 준비하고 있습니다</span><em>준비 중</em></a>
+    </div>
+  </div>
+</section>
+
+<section class="buy" id="buy">
+  <div class="wrap">
+    <div style="flex:1 1 520px;display:flex;flex-direction:column;gap:16px">
+      <p class="eyebrow">WE BUY</p>
+      <h2>쓰지 않는 명품,<br>에덴명품에 맡겨주세요</h2>
+      <p style="margin:0;font-size:16px" data-text="매입 안내 문구">사진 몇 장만 보내주시면 상태를 확인하고 매입가를 안내해 드립니다. 의류, 가방, 주얼리 모두 상담 가능합니다.</p>
+    </div>
+    <div class="btns">
+      <a class="btn btn-white" data-link="카카오톡 채널" href="http://pf.kakao.com/_GWDWX">카카오톡으로 매입 문의</a>
+      <a class="btn btn-outline" id="telBtn" hidden>전화 문의</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt store" id="store">
+  <div class="wrap">
+    <div style="flex:1 1 420px;display:flex;flex-direction:column;gap:16px">
+      <p class="eyebrow">STORE</p>
+      <h2>청담점 매장 직거래</h2>
+      <p style="margin:0;color:var(--body)">매장에서 실물을 직접 확인하고 구매하실 수 있습니다. 방문 전 연락 주시면 원하시는 상품을 준비해 두겠습니다.</p>
+      <a class="btn btn-dark" data-link="카카오톡 채널" href="http://pf.kakao.com/_GWDWX" style="align-self:flex-start;min-height:48px;font-size:15px;font-weight:500">방문 예약 · 카카오톡 문의</a>
+    </div>
+    <dl>
+      <dt>주소</dt><dd data-text="매장 주소" data-empty="서울 강남구 청담동 (상세 주소는 카카오톡으로 안내)">서울 강남구 청담동 (상세 주소는 카카오톡으로 안내)</dd>
+      <dt>영업시간</dt><dd data-text="영업시간" data-empty="방문 전 카카오톡으로 예약해 주세요">방문 전 카카오톡으로 예약해 주세요</dd>
+      <dt>문의</dt><dd><span data-text="전화번호" data-empty=""></span> <a data-link="카카오톡 채널" href="http://pf.kakao.com/_GWDWX">카카오톡 채널</a></dd>
+      <dt>거래 방법</dt><dd>매장 직거래 · 번개장터 안전결제 택배</dd>
+    </dl>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <span class="latin" style="font-size:22px;font-weight:600;letter-spacing:.28em;color:var(--ink)">EDEN</span>
+      <span id="biz">상호 에덴명품</span>
+    </div>
+    <span style="align-self:flex-end">© 에덴명품 청담점. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var CFG = window.EDEN_CONFIG || {};
+  var CATS = ['전체', '의류', '신발', '가방', '지갑', '악세서리', '워치'];
+  var state = { cat: '전체', brand: '전체', items: [] };
+
+  // CSV 파서 (따옴표·줄바꿈 처리)
+  function parseCSV(text) {
+    var rows = [], row = [], cur = '', q = false;
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (q) {
+        if (c === '"' && text[i + 1] === '"') { cur += '"'; i++; }
+        else if (c === '"') q = false;
+        else cur += c;
+      } else if (c === '"') q = true;
+      else if (c === ',') { row.push(cur); cur = ''; }
+      else if (c === '\n') { row.push(cur); rows.push(row); row = []; cur = ''; }
+      else if (c !== '\r') cur += c;
+    }
+    if (cur !== '' || row.length) { row.push(cur); rows.push(row); }
+    return rows;
+  }
+  function toObjects(rows) {
+    var head = rows[0] || [];
+    return rows.slice(1).filter(function (r) { return r.join('').trim() !== ''; }).map(function (r) {
+      var o = {}; head.forEach(function (h, i) { o[h.trim()] = (r[i] || '').trim(); }); return o;
+    });
+  }
+  function el(tag, attrs, text) {
+    var e = document.createElement(tag);
+    for (var k in attrs || {}) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  // "몽클레르 MONCLER" → { kor: "몽클레르", eng: "MONCLER" }
+  function splitBrand(b) {
+    var m = String(b || '').match(/^([^A-Za-z0-9]*?)\s*([A-Za-z0-9].*)$/);
+    if (!m) return { kor: b, eng: b };
+    return { kor: (m[1] || m[2]).trim(), eng: m[2].trim() };
+  }
+  function won(v) {
+    var n = Number(String(v).replace(/[^0-9]/g, ''));
+    return n ? n.toLocaleString('ko-KR') + '원' : '가격 문의';
+  }
+
+  function renderFilters() {
+    var cats = document.getElementById('cats'); cats.innerHTML = '';
+    CATS.forEach(function (c) {
+      var b = el('button', { type: 'button', class: 'pill', 'aria-pressed': String(state.cat === c) }, c);
+      b.onclick = function () { state.cat = c; render(); };
+      cats.appendChild(b);
+    });
+    var brands = document.getElementById('brands'); brands.innerHTML = '';
+    var names = [];
+    state.items.forEach(function (p) { var k = splitBrand(p['브랜드']).kor; if (k && names.indexOf(k) < 0) names.push(k); });
+    names.sort();
+    if (!names.length) return;
+    brands.appendChild(el('span', { class: 'label' }, '브랜드'));
+    ['전체'].concat(names).forEach(function (n) {
+      var b = el('button', { type: 'button', class: 'blink', 'aria-pressed': String(state.brand === n) }, n);
+      b.onclick = function () { state.brand = n; render(); };
+      brands.appendChild(b);
+    });
+  }
+
+  function render() {
+    renderFilters();
+    var grid = document.getElementById('grid'); grid.innerHTML = '';
+    var shown = state.items.filter(function (p) {
+      return (state.cat === '전체' || p['카테고리'] === state.cat) &&
+             (state.brand === '전체' || splitBrand(p['브랜드']).kor === state.brand);
+    });
+    shown.forEach(function (p) {
+      var br = splitBrand(p['브랜드']);
+      var link = p['번장 상품 링크'] || (CFG.shopUrl || 'https://m.bunjang.co.kr/shops/79680863/products');
+      var a = el('a', { class: 'card', href: link, target: '_blank', rel: 'noopener' });
+      var ph = el('div', { class: 'ph' });
+      var img = p['대표사진 파일'];
+      if (/^https?:\/\//.test(img)) ph.appendChild(el('img', { src: img, alt: p['상품명'] || '', loading: 'lazy' }));
+      if (p['판매상태'] === '예약중') ph.appendChild(el('span', { class: 'badge' }, '예약중'));
+      a.appendChild(ph);
+      var info = el('div', { style: 'display:flex;flex-direction:column;gap:4px' });
+      info.appendChild(el('p', { class: 'brand' }, [br.eng, p['카테고리']].filter(Boolean).join(' · ')));
+      info.appendChild(el('h3', null, p['상품명']));
+      var meta = [p['사이즈'] && ('사이즈 ' + p['사이즈']), p['상태등급'] && ('상태 ' + p['상태등급']), p['구성품']].filter(Boolean).join(' · ');
+      if (meta) info.appendChild(el('p', { class: 'meta' }, meta));
+      info.appendChild(el('p', { class: 'price' }, won(p['판매가'])));
+      a.appendChild(info);
+      grid.appendChild(a);
+    });
+    document.getElementById('empty').hidden = shown.length > 0;
+  }
+
+  function applySiteText(map) {
+    document.querySelectorAll('[data-text]').forEach(function (n) {
+      var v = map[n.getAttribute('data-text')];
+      if (v) n.textContent = v;
+      else if (n.hasAttribute('data-empty')) n.textContent = n.getAttribute('data-empty');
+    });
+    document.querySelectorAll('[data-link]').forEach(function (n) {
+      var v = map[n.getAttribute('data-link')]; if (v) n.href = v;
+    });
+    if (map['공지']) { var nb = document.getElementById('notice'); nb.textContent = map['공지']; nb.style.display = 'block'; }
+    if (map['인스타그램']) {
+      var ig = document.getElementById('insta');
+      ig.classList.remove('soon'); ig.href = map['인스타그램']; ig.querySelector('em').textContent = '팔로우하기 →';
+      ig.querySelector('span').textContent = '신상품 입고와 매장 소식을 가장 먼저 알려드립니다';
+    }
+    if (map['전화번호']) {
+      var t = document.getElementById('telBtn'); t.hidden = false;
+      t.href = 'tel:' + map['전화번호'].replace(/[^0-9+]/g, ''); t.textContent = '전화 문의 ' + map['전화번호'];
+    }
+    var biz = ['상호 에덴명품', map['대표자명'] && ('대표 ' + map['대표자명']),
+      map['사업자등록번호'] && ('사업자등록번호 ' + map['사업자등록번호']),
+      map['통신판매업 신고번호'] && ('통신판매업 ' + map['통신판매업 신고번호'])].filter(Boolean).join(' · ');
+    document.getElementById('biz').textContent = biz;
+  }
+
+  function load(url) {
+    var sep = url.indexOf('?') >= 0 ? '&' : '?';
+    return fetch(url + sep + 't=' + Date.now()).then(function (r) { return r.text(); }).then(parseCSV);
+  }
+
+  render();
+  if (CFG.siteTextCsv) load(CFG.siteTextCsv).then(function (rows) {
+    var map = {}; rows.slice(1).forEach(function (r) { if (r[0]) map[r[0].trim()] = (r[1] || '').trim(); });
+    applySiteText(map);
+  }).catch(function () {});
+  if (CFG.productsCsv) load(CFG.productsCsv).then(function (rows) {
+    state.items = toObjects(rows).filter(function (p) { return p['상품명']; });
+    render();
+  }).catch(function () {});
+})();
+</script>
+</body>
+</html>
