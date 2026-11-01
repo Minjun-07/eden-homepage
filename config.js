@@ -4,5 +4,5 @@ window.EDEN_CONFIG = {
   // 시트의 "홈페이지용" 탭 CSV 링크
   productsCsv: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhFD8SZhzAVznsF5pvYLEUKXEvr6zDBNyWLGGNLNSWNobiad2Ps462nR1hs22BbpMcla_iQ6wfEJD6/pub?gid=4&single=true&output=csv",
   // 시트의 "사이트 문구" 탭 CSV 링크
-  siteTextCsv: ""
+  siteTextCsv: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhFD8SZhzAVznsF5pvYLEUKXEvr6zDBNyWLGGNLNSWNobiad2Ps462nR1hs22BbpMcla_iQ6wfEJD6/pub?gid=3&single=true&output=csv"
 };
