@@ -4,5 +4,7 @@ window.EDEN_CONFIG = {
   // 시트의 "홈페이지용" 탭 CSV 링크
   productsCsv: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhFD8SZhzAVznsF5pvYLEUKXEvr6zDBNyWLGGNLNSWNobiad2Ps462nR1hs22BbpMcla_iQ6wfEJD6/pub?gid=4&single=true&output=csv",
   // 시트의 "사이트 문구" 탭 CSV 링크
-  siteTextCsv: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhFD8SZhzAVznsF5pvYLEUKXEvr6zDBNyWLGGNLNSWNobiad2Ps462nR1hs22BbpMcla_iQ6wfEJD6/pub?gid=3&single=true&output=csv"
+  siteTextCsv: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhFD8SZhzAVznsF5pvYLEUKXEvr6zDBNyWLGGNLNSWNobiad2Ps462nR1hs22BbpMcla_iQ6wfEJD6/pub?gid=3&single=true&output=csv",
+  // 상품 상세의 구매하기·문의하기 버튼이 여는 카카오톡 채널 상담창
+  kakaoChatUrl: "http://pf.kakao.com/_GWDWX/chat"
 };

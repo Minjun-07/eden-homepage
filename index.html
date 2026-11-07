@@ -93,6 +93,47 @@
   .store dl { flex:1 1 420px; margin:0; display:grid; grid-template-columns:96px 1fr; gap:18px 24px; align-content:start; font-size:16px; }
   .store dt { font-weight:700; } .store dd { margin:0; color:var(--body); }
 
+  /* 상품 상세 */
+  #detail { position:fixed; inset:0; z-index:50; background:#fff; overflow-y:auto; }
+  #detail[hidden] { display:none; }
+  .d-top { position:sticky; top:0; z-index:2; background:#fff; border-bottom:1px solid var(--line); }
+  .d-top .wrap { display:flex; align-items:center; justify-content:space-between; min-height:60px; }
+  .d-back { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 4px; border:0; background:none; font:inherit; font-size:15px; font-weight:500; color:var(--ink); cursor:pointer; }
+  .d-body { display:flex; flex-wrap:wrap; gap:48px; padding-top:40px; padding-bottom:120px; }
+  .d-gallery { flex:1 1 420px; min-width:0; display:flex; flex-direction:column; gap:10px; }
+  .d-main { position:relative; aspect-ratio:1/1; background:#F3F3F1; overflow:hidden; }
+  .d-main img { width:100%; height:100%; object-fit:contain; display:block; }
+  .d-main .badge { position:absolute; top:14px; left:14px; background:var(--ink); color:#fff; font-size:13px; font-weight:700; padding:5px 12px; }
+  .d-thumbs { display:flex; flex-wrap:wrap; gap:8px; }
+  .d-thumbs button { width:72px; height:72px; padding:0; border:1px solid var(--line); background:#F3F3F1; cursor:pointer; }
+  .d-thumbs button[aria-current="true"] { border:2px solid var(--ink); }
+  .d-thumbs img { width:100%; height:100%; object-fit:cover; display:block; }
+  .d-info { flex:1 1 380px; min-width:0; display:flex; flex-direction:column; gap:18px; }
+  .d-info .brand { margin:0; font-size:13px; letter-spacing:.16em; color:var(--muted); font-weight:700; }
+  .d-info h1 { margin:0; font-family:'Noto Serif KR', serif; font-size:clamp(24px,3vw,32px); font-weight:700; line-height:1.4; }
+  .d-price { margin:0; font-size:26px; font-weight:700; }
+  .d-spec { margin:8px 0 0; display:grid; grid-template-columns:96px 1fr; border-top:1px solid var(--ink); }
+  .d-spec dt, .d-spec dd { margin:0; padding:14px 0; border-bottom:1px solid var(--line); font-size:15px; }
+  .d-spec dt { font-weight:700; } .d-spec dd { color:var(--body); }
+  .d-spec small { display:block; margin-top:4px; font-size:13px; color:var(--muted); }
+  .d-desc { margin:0; font-size:15px; color:var(--body); white-space:pre-line; }
+  .d-btns { display:flex; flex-direction:column; gap:10px; margin-top:8px; }
+  .d-btns .btn { width:100%; cursor:pointer; font-family:inherit; }
+  .d-btns .btn[disabled] { background:#BDBDB8; border-color:#BDBDB8; color:#fff; cursor:not-allowed; }
+  .d-note { margin:0; font-size:13px; color:var(--muted); }
+  .d-bar { display:none; }
+  #toast { position:fixed; left:50%; bottom:96px; transform:translateX(-50%); z-index:60; background:var(--ink); color:#fff; padding:12px 20px; font-size:14px; max-width:calc(100% - 32px); text-align:center; }
+  #toast[hidden] { display:none; }
+  @media (max-width:640px){
+    .d-body { padding-top:0; gap:28px; }
+    .d-body > .d-gallery { margin:0 -24px; }
+    .d-thumbs { padding:0 24px; }
+    .d-info .d-btns { display:none; }
+    .d-bar { display:flex; gap:8px; position:fixed; left:0; right:0; bottom:0; z-index:3; background:#fff; border-top:1px solid var(--line); padding:12px 16px calc(12px + env(safe-area-inset-bottom)); }
+    .d-bar .btn { flex:1; min-height:52px; padding:0 12px; cursor:pointer; font-family:inherit; }
+    .d-bar .btn[disabled] { background:#BDBDB8; border-color:#BDBDB8; color:#fff; }
+  }
+
   footer { border-top:1px solid var(--line); font-size:13px; color:var(--muted); }
   footer .wrap { padding-top:40px; padding-bottom:56px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; }
   @media (max-width:640px){ section { padding:64px 0; } .store dl { grid-template-columns:80px 1fr; } }
@@ -213,6 +254,39 @@
 </section>
 </main>
 
+<div id="detail" role="dialog" aria-modal="true" aria-labelledby="dName" hidden>
+  <div class="d-top">
+    <div class="wrap">
+      <button type="button" class="d-back" id="dBack">← 상품 목록</button>
+      <span class="latin" style="font-size:20px;font-weight:600;letter-spacing:.28em">EDEN</span>
+    </div>
+  </div>
+  <div class="wrap d-body">
+    <div class="d-gallery">
+      <div class="d-main"><img id="dImg" alt=""><span class="badge" id="dBadge" hidden></span></div>
+      <div class="d-thumbs" id="dThumbs"></div>
+    </div>
+    <div class="d-info">
+      <p class="brand" id="dBrand"></p>
+      <h1 id="dName"></h1>
+      <p class="d-price" id="dPrice"></p>
+      <dl class="d-spec" id="dSpec"></dl>
+      <p class="d-desc" id="dDesc" hidden></p>
+      <div class="d-btns">
+        <button type="button" class="btn btn-dark" data-act="buy">구매하기</button>
+        <button type="button" class="btn btn-line" data-act="ask">문의하기</button>
+      </div>
+      <p class="d-note">구매하기·문의하기를 누르면 상품 정보가 복사되고 카카오톡 채널 상담창이 열립니다. 채팅창에 붙여넣어 보내주세요.</p>
+      <a id="dBunjang" class="d-note" target="_blank" rel="noopener" style="align-self:flex-start;text-decoration:underline;padding:6px 0" hidden>번개장터 안전결제로 구매하기 →</a>
+    </div>
+  </div>
+  <div class="d-bar">
+    <button type="button" class="btn btn-line" data-act="ask">문의하기</button>
+    <button type="button" class="btn btn-dark" data-act="buy">구매하기</button>
+  </div>
+</div>
+<div id="toast" role="status" hidden></div>
+
 <footer>
   <div class="wrap">
     <div style="display:flex;flex-direction:column;gap:4px">
@@ -298,8 +372,7 @@
     });
     shown.forEach(function (p) {
       var br = splitBrand(p['브랜드']);
-      var link = p['번장 상품 링크'] || (CFG.shopUrl || 'https://m.bunjang.co.kr/shops/79680863/products');
-      var a = el('a', { class: 'card', href: link, target: '_blank', rel: 'noopener' });
+      var a = el('a', { class: 'card', href: '#p=' + encodeURIComponent(p._id) });
       var ph = el('div', { class: 'ph' });
       var img = p['대표사진 파일'];
       if (/^https?:\/\//.test(img)) ph.appendChild(el('img', { src: img, alt: p['상품명'] || '', loading: 'lazy' }));
@@ -347,14 +420,159 @@
     return fetch(url + sep + 't=' + Date.now()).then(function (r) { return r.text(); }).then(parseCSV);
   }
 
+  // ───── 상품 상세 ─────
+  var GRADE = {
+    'N-S': '새상품 또는 새상품과 같은 상태',
+    'S': '사용 횟수가 적어 새상품에 가까운 상태',
+    'A': '자연스러운 사용감은 있으나 전체적으로 양호한 상태',
+    'B': '스크래치, 때 등 사용 흔적이 있는 상태',
+    'C': '사용 흔적이 많아 중고 느낌이 확연한 상태',
+    'USED': '상세 사진으로 상태를 꼭 확인해 주세요'
+  };
+  var KAKAO = 'http://pf.kakao.com/_GWDWX';
+  var current = null, lastScroll = 0;
+
+  function chatUrl() { return (CFG.kakaoChatUrl || KAKAO.replace(/\/$/, '') + '/chat'); }
+  function productId(p, i) {
+    var m = String(p['번장 상품 링크'] || '').match(/products\/(\d+)/);
+    return m ? m[1] : 'n' + i;
+  }
+  function bigImg(src) { return String(src).replace(/_w\d+\.jpg/, '_w640.jpg'); }
+  function photos(p) {
+    var list = [p['대표사진 파일']].concat(String(p['추가사진'] || '').split(/[\s,]+/));
+    return list.filter(function (s, i, arr) { return /^https?:\/\//.test(s) && arr.indexOf(s) === i; });
+  }
+  function setMain(src) {
+    var img = document.getElementById('dImg');
+    img.onerror = function () { if (img.src !== src) { img.onerror = null; img.src = src; } };
+    img.src = bigImg(src);
+  }
+
+  function openDetail(id) {
+    var p = state.items.filter(function (x) { return x._id === id; })[0];
+    if (!p) return false;
+    current = p;
+    var br = splitBrand(p['브랜드']);
+    var box = document.getElementById('detail');
+    document.getElementById('dBrand').textContent = [br.eng, p['카테고리']].filter(Boolean).join(' · ');
+    document.getElementById('dName').textContent = p['상품명'];
+    document.getElementById('dPrice').textContent = won(p['판매가']);
+    document.getElementById('dImg').alt = p['상품명'] || '';
+
+    var pics = photos(p), thumbs = document.getElementById('dThumbs');
+    thumbs.innerHTML = '';
+    if (pics.length) setMain(pics[0]); else document.getElementById('dImg').removeAttribute('src');
+    if (pics.length > 1) pics.forEach(function (src, i) {
+      var b = el('button', { type: 'button', 'aria-label': (i + 1) + '번째 사진', 'aria-current': String(i === 0) });
+      b.appendChild(el('img', { src: src, alt: '' }));
+      b.onclick = function () {
+        setMain(src);
+        thumbs.querySelectorAll('button').forEach(function (t) { t.setAttribute('aria-current', String(t === b)); });
+      };
+      thumbs.appendChild(b);
+    });
+
+    var badge = document.getElementById('dBadge'), status = p['판매상태'] || '판매중';
+    badge.hidden = status === '판매중'; badge.textContent = status;
+
+    var spec = document.getElementById('dSpec'); spec.innerHTML = '';
+    [['브랜드', br.kor && br.eng && br.kor !== br.eng ? br.kor + ' (' + br.eng + ')' : p['브랜드']],
+     ['카테고리', p['카테고리']], ['연식', p['년식']], ['사이즈', p['사이즈']], ['색상', p['색상']],
+     ['상태 등급', p['상태등급']], ['구성품', p['구성품']], ['판매 상태', status]
+    ].forEach(function (r) {
+      if (!r[1]) return;
+      spec.appendChild(el('dt', null, r[0]));
+      var dd = el('dd', null, r[1]);
+      if (r[0] === '상태 등급' && GRADE[r[1]]) dd.appendChild(el('small', null, GRADE[r[1]]));
+      spec.appendChild(dd);
+    });
+
+    var desc = document.getElementById('dDesc');
+    desc.textContent = p['상세설명'] || ''; desc.hidden = !p['상세설명'];
+
+    var bj = document.getElementById('dBunjang'), bjUrl = p['번장 상품 링크'];
+    bj.hidden = !/^https?:\/\//.test(bjUrl || ''); if (!bj.hidden) bj.href = bjUrl;
+
+    var soldOut = status === '판매완료';
+    box.querySelectorAll('[data-act="buy"]').forEach(function (b) {
+      b.disabled = soldOut; b.textContent = soldOut ? '판매완료' : (status === '예약중' ? '예약중 · 구매 문의' : '구매하기');
+    });
+
+    document.title = p['상품명'] + ' | 에덴명품 청담점';
+    if (box.hidden) lastScroll = window.scrollY;
+    box.hidden = false; box.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+    document.getElementById('dBack').focus();
+    return true;
+  }
+
+  function closeDetail() {
+    var box = document.getElementById('detail');
+    if (box.hidden) return;
+    box.hidden = true; current = null;
+    document.body.style.overflow = '';
+    document.title = '에덴명품 청담점 | 청담동 중고명품';
+    window.scrollTo(0, lastScroll);
+  }
+
+  function route() {
+    var m = location.hash.match(/^#p=(.+)$/);
+    if (m) { if (!openDetail(decodeURIComponent(m[1])) && state.items.length) history.replaceState(null, '', '#products'); }
+    else closeDetail();
+  }
+
+  function toast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg; t.hidden = false;
+    clearTimeout(toast._t); toast._t = setTimeout(function () { t.hidden = true; }, 2600);
+  }
+  function copy(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function (ok, fail) {
+      var ta = el('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy') ? ok() : fail(); } catch (e) { fail(); }
+      ta.remove();
+    });
+  }
+
+  // 결제창(PG) 연결 시 이 함수만 바꾸면 됩니다. 지금은 카카오톡 채널로 연결합니다.
+  function handle(act) {
+    if (!current) return;
+    var p = current;
+    var head = act === 'buy' ? '[구매 요청]' : '[상품 문의]';
+    var msg = head + '\n' + p['상품명'] + '\n판매가: ' + won(p['판매가']) +
+      (p['사이즈'] ? '\n사이즈: ' + p['사이즈'] : '') + '\n' + location.href;
+    var win = window.open(chatUrl(), '_blank');
+    if (win) { try { win.opener = null; } catch (e) {} }
+    copy(msg).then(function () { toast('상품 정보가 복사됐어요. 카카오톡 채팅창에 붙여넣어 주세요.'); })
+             .catch(function () { toast('카카오톡에서 상품명을 함께 보내주세요.'); });
+    if (!win) location.href = chatUrl();
+  }
+
+  document.getElementById('dBack').onclick = function () {
+    if (history.length > 1 && /^#p=/.test(location.hash)) history.back();
+    else { history.replaceState(null, '', '#products'); closeDetail(); }
+  };
+  document.querySelectorAll('#detail [data-act]').forEach(function (b) {
+    b.onclick = function () { handle(b.getAttribute('data-act')); };
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !document.getElementById('detail').hidden) document.getElementById('dBack').click();
+  });
+  window.addEventListener('hashchange', route);
+
   render();
   if (CFG.siteTextCsv) load(CFG.siteTextCsv).then(function (rows) {
     var map = {}; rows.slice(1).forEach(function (r) { if (r[0]) map[r[0].trim()] = (r[1] || '').trim(); });
+    if (map['카카오톡 채널']) KAKAO = map['카카오톡 채널'];
     applySiteText(map);
   }).catch(function () {});
   if (CFG.productsCsv) load(CFG.productsCsv).then(function (rows) {
     state.items = toObjects(rows).filter(function (p) { return p['상품명']; });
+    state.items.forEach(function (p, i) { p._id = productId(p, i); });
     render();
+    route();
   }).catch(function () {});
 })();
 </script>
